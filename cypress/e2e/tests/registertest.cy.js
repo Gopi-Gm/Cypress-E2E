@@ -1,5 +1,5 @@
-import { registerPage } from "../../Pages/registerpage";
-import registerData from "../../fixtures/registerData.json";
+const { registerPage } = require("../../Pages/registerPage");
+const registerData = require("../../fixtures/registerData.json");
 
 
 const registerPageObj = new registerPage();

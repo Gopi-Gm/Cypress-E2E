@@ -1,4 +1,4 @@
-export class registerPage {
+class registerPage {
 
 
     weblocators = {
@@ -50,4 +50,6 @@ export class registerPage {
     }
 
 }
+
+module.exports = { registerPage }
 
