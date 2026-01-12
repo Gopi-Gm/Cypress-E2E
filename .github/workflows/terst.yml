@@ -1,0 +1,49 @@
+name: Regression End-to-end tests
+on: 
+  push:
+  schedule:
+    - cron: '30 3 * * *'   # 9 AM IST (3:30 AM UTC)
+    - cron: '30 8 * * *'   # 2 PM IST (8:30 AM UTC)
+    - cron: '30 14 * * *'  # 8 PM IST (2:30 PM UTC)
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+         command: npm run test:addToCart    
+
+      - name: Cypress Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mochawesome HTML Report
+          path: cypress/reports/html   
+       
+
+      - name: Send Email Notification
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: 'Cypress Test Automation Report'
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            Test Automation Report
+            Status: ${{ job.status }}
+            Run ID: ${{ github.run_id }}
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            
+            View full report: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}    

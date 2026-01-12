@@ -1,0 +1,24 @@
+{
+  "name": "cypress-e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:addToCart": "npx cypress run --spec cypress/e2e/tests/addToCart.cy.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gopi-Gm/Cypress-E2E.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gopi-Gm/Cypress-E2E/issues"
+  },
+  "homepage": "https://github.com/Gopi-Gm/Cypress-E2E#readme",
+  "devDependencies": {
+    "cypress": "^15.8.2",
+    "cypress-mochawesome-reporter": "^4.0.2"
+  }
+}
