@@ -1,4 +1,4 @@
-export class homePage {
+class homePage {
 
 
     weblocators = {
@@ -25,3 +25,5 @@ export class homePage {
     }
 
 }
+
+module.exports = { homePage }

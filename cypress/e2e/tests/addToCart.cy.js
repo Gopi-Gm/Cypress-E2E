@@ -1,7 +1,7 @@
 
-import { homePage } from "../../Pages/homepage"
+const { homePage } = require("../../Pages/homePage")
 const homePageObj = new homePage()
-import testData from '../../fixtures/testData.json'
+const testData = require('../../fixtures/testData.json')
 
 
 describe(' test automation', () => {
