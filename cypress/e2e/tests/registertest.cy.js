@@ -1,4 +1,4 @@
-const { registerPage } = require("../../Pages/registerPage");
+const { registerPage } = require("../../Pages/registerpage");
 const registerData = require("../../fixtures/registerData.json");
 
 
