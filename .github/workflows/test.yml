@@ -1,0 +1,20 @@
+name: Regression End-to-end tests
+on: 
+  push:
+  schedule:
+    - cron: '30 3 * * *'   # 9 AM IST (3:30 AM UTC)
+    - cron: '30 8 * * *'   # 2 PM IST (8:30 AM UTC)
+    - cron: '30 14 * * *'  # 8 PM IST (2:30 PM UTC)
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+       
