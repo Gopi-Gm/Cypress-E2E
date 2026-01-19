@@ -9,7 +9,10 @@
     "test:registerFlow": "npx cypress run --spec cypress/e2e/tests/registertest.cy.js",
     "test:browser": "npx cypress run --spec cypress/e2e/tests/addToCartTest.cy.js --browser chrome",
     "test:record": "npx cypress run --record --key fb12f2c3-308b-4a42-a1c3-fec27aa0768e",
-    "cy:parallel": "cypress-parallel -s cy:run -t 2 -d cypress/e2e/tests -a "
+    "cy:parallel": "cypress-parallel -s cy:run -t 2 -d cypress/e2e/tests -a ",
+    "cypress:open": "cypress open",
+    "test:report": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/report.json && npx marge cypress/reports/report.json -f report -o cypress/reports/html"
+  
   },
   "repository": {
     "type": "git",
