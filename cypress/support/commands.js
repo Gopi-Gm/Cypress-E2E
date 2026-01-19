@@ -47,3 +47,12 @@ Cypress.Commands.add("captureConsoleLogs", () => {
     });
 });
 
+// Import commands.js using ES2015 syntax:
+import './commands'
+
+// Import cypress-mochawesome-reporter for screenshots
+import 'cypress-mochawesome-reporter/register';
+
+// Alternatively you can use CommonJS syntax:
+// require('./commands')
+
