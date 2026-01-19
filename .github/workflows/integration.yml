@@ -1,10 +1,13 @@
 name: Regression End-to-end tests
-on: push
-jobs:
+
+on:
+  push:
   schedule:
-    cron: '30 3 * * *'   # 9 AM IST (3:30 AM UTC)
-    cron: '30 8 * * *'   # 2 PM IST (8:30 AM UTC)
-    cron: '30 14 * * *  # 8 PM IST (2:30 PM UTC)
+    - cron: '30 3 * * *'   # 9 AM IST (3:30 AM UTC)
+    - cron: '30 8 * * *'   # 2 PM IST (8:30 AM UTC)
+    - cron: '30 14 * * *'  # 8 PM IST (2:30 PM UTC)
+
+jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
@@ -13,32 +16,31 @@ jobs:
         
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
-
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-         command: npm run test:addToCart    
-
+          command: npm run test:addToCart
+          
       - name: Cypress Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Mochawesome HTML Report
-          path: cypress/reports/html   
-
+          path: cypress/reports/html
+          
       - name: Send Email
         if: always()
         uses: dawidd6/action-send-mail@v6
         with: 
-            server_address: smtp.gmail.com
-            server_port: 465
-            username: ${{ secrets.GMAIL_USERNAME }}
-            password: ${{ secrets.GMAIL_APP_PASSWORD }}
-            secure: true
-            subject: cypress TEST EXECUTION - ${{ job.status }}
-            to: gopirenu456@gmail.com
-            from: ${{ secrets.GMAIL_USERNAME }}
-            body: |
-              Hi,
-              test automation report ${{ job.status }}. 
-              Report: https://github.com/Gopi-Gm/Cypress-E2E/actions
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          secure: true
+          subject: Cypress TEST EXECUTION - ${{ job.status }}
+          to: gopirenu456@gmail.com
+          from: ${{ secrets.GMAIL_USERNAME }}
+          body: |
+            Hi,
+            Test automation report ${{ job.status }}. 
+            Report: https://github.com/Gopi-Gm/Cypress-E2E/actions
